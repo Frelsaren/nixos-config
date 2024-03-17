@@ -39,6 +39,7 @@
   stable-packages = with pkgs; [
     # FIXME: customize these stable packages to your liking for the languages that you use
     lf
+    oh-my-posh
     # key tools
     gh # for bootstrapping
     # just
@@ -324,6 +325,7 @@ in {
 
         # fixes duplication of commands when using tab-completion
         export LANG=C.UTF-8
+        eval "$(oh-my-posh --init --shell zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/night-owl.omp.json')"
       '';
     };
   };
