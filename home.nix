@@ -1,6 +1,6 @@
 {
   # FIXME: uncomment the next line if you want to reference your GitHub/GitLab access tokens and other secrets
-  # secrets,
+  secrets,
   config,
   pkgs,
   username,
@@ -38,29 +38,29 @@
 
   stable-packages = with pkgs; [
     # FIXME: customize these stable packages to your liking for the languages that you use
-
+    lf
     # key tools
     gh # for bootstrapping
-    just
+    # just
 
     # core languages
-    rustup
+    # rustup
     go
-    lua
+    # lua
     nodejs
     python3
     typescript
 
     # rust stuff
-    cargo-cache
-    cargo-expand
+    # cargo-cache
+    # cargo-expand
 
     # local dev stuf
-    mkcert
-    httpie
+    # mkcert
+    # httpie
 
     # treesitter
-    tree-sitter
+    # tree-sitter
 
     # language servers
     ccls # c / c++
@@ -160,18 +160,18 @@ in {
         side-by-side = true;
         navigate = true;
       };
-      userEmail = ""; # FIXME: set your git email
-      userName = ""; #FIXME: set your git username
+      userEmail = "markus.roiland00@gmail.com"; # FIXME: set your git email
+      userName = "Frelsaren"; #FIXME: set your git username
       extraConfig = {
         # FIXME: uncomment the next lines if you want to be able to clone private https repos
-        # url = {
-        #   "https://oauth2:${secrets.github_token}@github.com" = {
-        #     insteadOf = "https://github.com";
-        #   };
+         url = {
+           "https://oauth2:${secrets.github_token}@github.com" = {
+             insteadOf = "https://github.com";
+           };
         #   "https://oauth2:${secrets.gitlab_token}@gitlab.com" = {
         #     insteadOf = "https://gitlab.com";
         #   };
-        # };
+         };
         push = {
           default = "current";
           autoSetupRemote = true;
