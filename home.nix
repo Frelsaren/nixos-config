@@ -41,6 +41,7 @@
     lf
     oh-my-posh
     neofetch
+    brave
     # key tools
     gh # for bootstrapping
     # just
