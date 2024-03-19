@@ -125,7 +125,7 @@ in {
     nix-index-database.comma.enable = true;
 
     # FIXME: disable this if you don't want to use the starship prompt
-    starship.enable = true;
+    starship.enable = false;
     starship.settings = {
       aws.disabled = true;
       gcloud.disabled = true;
