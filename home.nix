@@ -34,14 +34,13 @@
     vim
     wget
     zip
+    oh-my-posh
+    lf
+    neofetch
   ];
 
   stable-packages = with pkgs; [
     # FIXME: customize these stable packages to your liking for the languages that you use
-    lf
-    oh-my-posh
-    neofetch
-    brave
     # key tools
     gh # for bootstrapping
     # just
@@ -49,6 +48,7 @@
     # core languages
     # rustup
     go
+    delve
     # lua
     nodejs
     python3
@@ -63,7 +63,7 @@
     # httpie
 
     # treesitter
-    # tree-sitter
+    tree-sitter
 
     # language servers
     ccls # c / c++
@@ -330,8 +330,8 @@ in {
 
         # fixes duplication of commands when using tab-completion
         export LANG=C.UTF-8
-        eval "$(oh-my-posh --init --shell zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin_macchiato.omp.json')"
         neofetch
+        eval "$(oh-my-posh --init --shell zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin_macchiato.omp.json')"
       '';
     };
   };
