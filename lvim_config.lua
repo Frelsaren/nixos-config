@@ -99,7 +99,17 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
-
+  {
+    "leoluz/nvim-dap-go",
+    opts =
+    {
+      dap_configurations = {
+        type = "go",
+        name = "Launch",
+        mode = "launch"
+      }
+    },
+  },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }
 
