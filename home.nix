@@ -37,12 +37,12 @@
     oh-my-posh
     lf
     neofetch
+    gh # for bootstrapping
   ];
 
   stable-packages = with pkgs; [
     # FIXME: customize these stable packages to your liking for the languages that you use
     # key tools
-    gh # for bootstrapping
     # just
 
     # core languages
@@ -190,6 +190,13 @@ in {
       };
     };
 
+    # gh = {
+    #   enable = true;
+    #   extensions = [
+    #   pkgs.gh-eco
+    #   ];
+    # };
+    
     # FIXME: This is my .zshrc - you can fiddle with it if you want
     zsh = {
       enable = true;
