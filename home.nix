@@ -53,8 +53,8 @@
     nodejs
     python3
     typescript
-
     # rust stuff
+    python311Packages.pip
     # cargo-cache
     # cargo-expand
 
@@ -190,13 +190,6 @@ in {
       };
     };
 
-    # gh = {
-    #   enable = true;
-    #   extensions = [
-    #   pkgs.gh-eco
-    #   ];
-    # };
-    
     # FIXME: This is my .zshrc - you can fiddle with it if you want
     zsh = {
       enable = true;
