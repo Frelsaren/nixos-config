@@ -330,7 +330,7 @@ in {
 
         # fixes duplication of commands when using tab-completion
         export LANG=C.UTF-8
-        neofetch
+        # neofetch
         eval "$(oh-my-posh --init --shell zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin_macchiato.omp.json')"
       '';
     };
