@@ -111,6 +111,14 @@ lvim.plugins = {
     },
   },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require 'lsp_signature'.setup(opts)
+    end
+  }
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
