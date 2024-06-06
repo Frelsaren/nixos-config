@@ -21,7 +21,9 @@
   programs.zsh.enable = true;
   environment.pathsToLink = ["/share/zsh"];
   environment.shells = [pkgs.zsh];
-
+  environment.etc = {
+    "resolv.conf".text = "nameserver 1.1.1.1\n";
+  };
   environment.enableAllTerminfo = true;
 
   security.sudo.wheelNeedsPassword = false;
