@@ -21,9 +21,9 @@
   programs.zsh.enable = true;
   environment.pathsToLink = ["/share/zsh"];
   environment.shells = [pkgs.zsh];
-  environment.etc = {
-    "resolv.conf".text = "nameserver 1.1.1.1\n";
-  };
+  # environment.etc = {
+  #   "resolv.conf".text = "nameserver 1.1.1.1\n";
+  # };
   environment.enableAllTerminfo = true;
 
   security.sudo.wheelNeedsPassword = false;
@@ -65,6 +65,7 @@
     wslConf.automount.root = "/mnt";
     wslConf.interop.appendWindowsPath = false;
     wslConf.network.generateHosts = false;
+    wslConf.network.generateResolvConf = false;
     defaultUser = username;
     startMenuLaunchers = true;
 
@@ -83,6 +84,7 @@
 
   };
 
+  networking.nameservers = ["1.1.1.1" "1.0.0.1"];
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
