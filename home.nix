@@ -195,7 +195,8 @@ in {
     zsh = {
       enable = true;
       autocd = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
+      # enableAutosuggestion.enable = true;
       enableCompletion = true;
       defaultKeymap = "emacs";
       history.size = 10000;
