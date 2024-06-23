@@ -22,9 +22,9 @@
     htop
     jq
     killall
-    lunarvim
+    # lunarvim
     mosh
-    neovim
+    # neovim
     procs
     ripgrep
     sd
@@ -42,6 +42,7 @@
   ];
 
   stable-packages = with pkgs; [
+    # jeezyvim
     # FIXME: customize these stable packages to your liking for the languages that you use
     # key tools
     # just
@@ -104,27 +105,71 @@ in {
     # FIXME: set your preferred $SHELL
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/zsh";
   };
-
   home.packages =
     stable-packages
     ++ unstable-packages
     ++
     # FIXME: you can add anything else that doesn't fit into the above two lists in here
     [
-      # pkgs.some-package
-      # pkgs.unstable.some-other-package
+(pkgs.jeezyvim.nixvimExtend {
+      # you can put anything under the "Options" section of the NixVim docs here
+      # https://nix-community.github.io/nixvim/
+
+      # some examples...
+
+      # all your regular vim options here
+      options = {
+        textwidth = 120;
+      };
+      config = {
+      # add your own personal keymaps preferences
+        colorschemes = {
+
+        kanagawa.enable = false;
+        catppuccin.enable = true;
+        catppuccin.settings.flavor = "macchiato";
+        };
+        keymaps = [
+          {
+            mode = "n";
+            action = ":vsplit<CR>";
+            key = "|";
+          }
+
+          {
+            mode = "n";
+            action = ":split<CR>";
+            key = "-";
+          }
+        ];
+
+        plugins = {
+          lsp.servers = {
+            # full list of language servers you can enable on the left bar here:
+            # https://nix-community.github.io/nixvim/plugins/lsp/servers/ansiblels/index.html
+
+            graphql.enable = true;
+          };
+
+          # full list of plugins on the left bar here:
+          # https://nix-community.github.io/nixvim/plugins/airline/index.html
+
+          markdown-preview.enable = true;
+        };
+      };
+    })
     ];
 
   # FIXME: if you want to version your LunarVim config, add it to the root of this repo and uncomment the next line
-  home.file.".config/lvim/config.lua".source = ./configs/lvim_config.lua;
+  # home.file.".config/lvim/config.lua".source = ./configs/lvim_config.lua;
   home.file.".config/oh-my-posh/ohmyposh.omp.json".source = ./configs/ohmyposh.omp.json;
   home.file.".config/oh-my-posh/zen.toml".source = ./configs/omp.toml;
   programs = {
+    # jeezyvim.enable = true;
     home-manager.enable = true;
     nix-index.enable = true;
     nix-index.enableZshIntegration = true;
     nix-index-database.comma.enable = true;
-
     # FIXME: disable this if you don't want to use the starship prompt
     starship.enable = false;
     starship.settings = {
