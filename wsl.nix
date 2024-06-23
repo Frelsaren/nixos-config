@@ -65,7 +65,7 @@
     wslConf.automount.root = "/mnt";
     wslConf.interop.appendWindowsPath = false;
     wslConf.network.generateHosts = false;
-    wslConf.network.generateResolvConf = false;
+    # wslConf.network.generateResolvConf = true;
     defaultUser = username;
     startMenuLaunchers = true;
 
@@ -84,7 +84,7 @@
 
   };
 
-  networking.nameservers = ["1.1.1.1" "1.0.0.1"];
+  # networking.nameservers = ["1.1.1.1" "1.0.0.1"];
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
