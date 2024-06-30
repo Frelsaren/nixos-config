@@ -162,7 +162,7 @@ in {
 
   # FIXME: if you want to version your LunarVim config, add it to the root of this repo and uncomment the next line
   # home.file.".config/lvim/config.lua".source = ./configs/lvim_config.lua;
-  home.file.".config/oh-my-posh/ohmyposh.omp.json".source = ./configs/ohmyposh.omp.json;
+  # home.file.".config/oh-my-posh/ohmyposh.omp.json".source = ./configs/ohmyposh.omp.json;
   home.file.".config/oh-my-posh/zen.toml".source = ./configs/omp.toml;
   programs = {
     # jeezyvim.enable = true;
