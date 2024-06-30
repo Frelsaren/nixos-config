@@ -50,6 +50,10 @@
     # core languages
     # rustup
     delve
+    
+    # java
+    # jdk17
+    # gradle_8
     # lua
     nodejs
     python3
@@ -111,7 +115,7 @@ in {
     ++
     # FIXME: you can add anything else that doesn't fit into the above two lists in here
     [
-(pkgs.jeezyvim.nixvimExtend {
+      (pkgs.jeezyvim.nixvimExtend {
       # you can put anything under the "Options" section of the NixVim docs here
       # https://nix-community.github.io/nixvim/
 
@@ -147,7 +151,8 @@ in {
           lsp.servers = {
             # full list of language servers you can enable on the left bar here:
             # https://nix-community.github.io/nixvim/plugins/lsp/servers/ansiblels/index.html
-
+            # goplz.enable = true;
+            # eslint.enable = true;
             graphql.enable = true;
           };
 
@@ -157,7 +162,7 @@ in {
           markdown-preview.enable = true;
         };
       };
-    })
+      })
     ];
 
   # FIXME: if you want to version your LunarVim config, add it to the root of this repo and uncomment the next line
@@ -177,9 +182,11 @@ in {
       gcloud.disabled = true;
       kubernetes.disabled = false;
       git_branch.style = "242";
-      directory.style = "blue";
-      directory.truncate_to_repo = false;
-      directory.truncation_length = 8;
+      directory = {
+        style = "blue";
+        truncate_to_repo = false;
+        truncation_length = 8;
+      };
       python.disabled = true;
       ruby.disabled = true;
       hostname.ssh_only = false;
@@ -291,7 +298,7 @@ in {
         pbcopy = "/mnt/c/Windows/System32/clip.exe";
         pbpaste = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
         explorer = "/mnt/c/Windows/explorer.exe";
-        code = "'/mnt/c/utils/vsc/bin/code'";
+        code = "'/mnt/c/Appl/vscode/bin/code'";
       };
 
       envExtra = ''
