@@ -22,7 +22,8 @@
     htop
     jq
     killall
-    # lunarvim
+    # fzf
+    lunarvim
     mosh
     # neovim
     procs
@@ -50,16 +51,16 @@
     # core languages
     # rustup
     delve
-    
+
     # java
     # jdk17
     # gradle_8
     # lua
     nodejs
     python3
+    python311Packages.pip
     typescript
     # rust stuff
-    python311Packages.pip
     # cargo-cache
     # cargo-expand
 
@@ -115,58 +116,10 @@ in {
     ++
     # FIXME: you can add anything else that doesn't fit into the above two lists in here
     [
-      (pkgs.jeezyvim.nixvimExtend {
-      # you can put anything under the "Options" section of the NixVim docs here
-      # https://nix-community.github.io/nixvim/
-
-      # some examples...
-
-      # all your regular vim options here
-      options = {
-        textwidth = 120;
-      };
-      config = {
-      # add your own personal keymaps preferences
-        colorschemes = {
-
-        kanagawa.enable = false;
-        catppuccin.enable = true;
-        catppuccin.settings.flavor = "macchiato";
-        };
-        keymaps = [
-          {
-            mode = "n";
-            action = ":vsplit<CR>";
-            key = "|";
-          }
-
-          {
-            mode = "n";
-            action = ":split<CR>";
-            key = "-";
-          }
-        ];
-
-        plugins = {
-          lsp.servers = {
-            # full list of language servers you can enable on the left bar here:
-            # https://nix-community.github.io/nixvim/plugins/lsp/servers/ansiblels/index.html
-            # goplz.enable = true;
-            # eslint.enable = true;
-            graphql.enable = true;
-          };
-
-          # full list of plugins on the left bar here:
-          # https://nix-community.github.io/nixvim/plugins/airline/index.html
-
-          markdown-preview.enable = true;
-        };
-      };
-      })
     ];
 
   # FIXME: if you want to version your LunarVim config, add it to the root of this repo and uncomment the next line
-  # home.file.".config/lvim/config.lua".source = ./configs/lvim_config.lua;
+  home.file.".config/lvim/config.lua".source = ./configs/lvim_config.lua;
   # home.file.".config/oh-my-posh/ohmyposh.omp.json".source = ./configs/ohmyposh.omp.json;
   home.file.".config/oh-my-posh/zen.toml".source = ./configs/omp.toml;
   programs = {
@@ -222,14 +175,14 @@ in {
       userName = "Frelsaren"; #FIXME: set your git username
       extraConfig = {
         # FIXME: uncomment the next lines if you want to be able to clone private https repos
-         url = {
-           "https://oauth2:${secrets.github_token}@github.com" = {
-             insteadOf = "https://github.com";
-           };
-         #  "https://oauth2:${secrets.gitlab_token}@gitlab.com" = {
-         #    insteadOf = "https://gitlab.com";
-         #  };
-         };
+        url = {
+          "https://oauth2:${secrets.github_token}@github.com" = {
+            insteadOf = "https://github.com";
+          };
+          #  "https://oauth2:${secrets.gitlab_token}@gitlab.com" = {
+          #    insteadOf = "https://gitlab.com";
+          #  };
+        };
         push = {
           default = "current";
           autoSetupRemote = true;
