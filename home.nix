@@ -43,7 +43,6 @@
   ];
 
   stable-packages = with pkgs; [
-    # jeezyvim
     # FIXME: customize these stable packages to your liking for the languages that you use
     # key tools
     # just
@@ -123,7 +122,6 @@ in {
   # home.file.".config/oh-my-posh/ohmyposh.omp.json".source = ./configs/ohmyposh.omp.json;
   home.file.".config/oh-my-posh/zen.toml".source = ./configs/omp.toml;
   programs = {
-    # jeezyvim.enable = true;
     home-manager.enable = true;
     nix-index.enable = true;
     nix-index.enableZshIntegration = true;
