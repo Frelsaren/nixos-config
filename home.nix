@@ -1,6 +1,6 @@
 {
   # FIXME: uncomment the next line if you want to reference your GitHub/GitLab access tokens and other secrets
-  # secrets,
+  secrets,
   pkgs,
   username,
   nix-index-database,
@@ -28,7 +28,7 @@
     tmux
     tree
     unzip
-    vim
+    # vim
     wget
     zip
   ];
@@ -38,15 +38,19 @@
 
     # FIXME: you can add plugins, change keymaps etc using (jeezyvim.nixvimExtend {})
     # https://github.com/LGUG2Z/JeezyVim#extending
-    jeezyvim
-
     # key tools
     gh # for bootstrapping
     just
 
     # core languages
     rustup
+    nodejs
+    python3
+    typescript
 
+    nodePackages.typescript-language-server
+    pkgs.nodePackages.vscode-langservers-extracted # html, css, json, eslint
+    gopls
     # rust stuff
     cargo-cache
     cargo-expand
@@ -62,7 +66,6 @@
     nodePackages.vscode-langservers-extracted # html, css, json, eslint
     nodePackages.yaml-language-server
     nil # nix
-
     # formatters and linters
     alejandra # nix
     deadnix # nix
@@ -93,6 +96,16 @@ in {
     ++
     # FIXME: you can add anything else that doesn't fit into the above two lists in here
     [
+      (pkgs.jeezyvim.extend {
+        plugins = {
+          lsp.servers = {
+            gopls.enable = true;
+            ts_ls.enable = true;
+          };
+        };
+        colorschemes.kanagawa.enable = false;
+        colorschemes.catppuccin.enable = true;
+      })
       # pkgs.some-package
       # pkgs.unstable.some-other-package
     ];
@@ -141,18 +154,16 @@ in {
         side-by-side = true;
         navigate = true;
       };
-      userEmail = ""; # FIXME: set your git email
-      userName = ""; #FIXME: set your git username
+      userEmail = "markus.roiland00@gmail.com"; # FIXME: set your git email
+      userName = "Frelsaren"; #FIXME: set your git username
       extraConfig = {
         # FIXME: uncomment the next lines if you want to be able to clone private https repos
-        # url = {
-        #   "https://oauth2:${secrets.github_token}@github.com" = {
-        #     insteadOf = "https://github.com";
-        #   };
-        #   "https://oauth2:${secrets.gitlab_token}@gitlab.com" = {
-        #     insteadOf = "https://gitlab.com";
-        #   };
-        # };
+        url = {
+          "https://oauth2:${secrets.github_token}@github.com" = {
+            insteadOf = "https://github.com";
+          };
+        };
+
         push = {
           default = "current";
           autoSetupRemote = true;
@@ -172,8 +183,7 @@ in {
       # FIXME: run 'scoop install win32yank' on Windows, then add this line with your Windows username to the bottom of interactiveShellInit
       # fish_add_path --append /mnt/c/Users/<Your Windows Username>/scoop/apps/win32yank/0.1.1
       interactiveShellInit = ''
-        ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-
+        fish_add_path --append /mnt/c/Users/mroil/scoop/apps/win32yank/0.1.1
         ${pkgs.lib.strings.fileContents (pkgs.fetchFromGitHub {
             owner = "rebelot";
             repo = "kanagawa.nvim";
@@ -229,6 +239,7 @@ in {
         pbcopy = "/mnt/c/Windows/System32/clip.exe";
         pbpaste = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
         explorer = "/mnt/c/Windows/explorer.exe";
+        code = "/mnt/c/Appl/vscode/bin/code";
       };
       plugins = [
         {
