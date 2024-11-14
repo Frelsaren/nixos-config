@@ -31,7 +31,7 @@
     extraGroups = [
       "wheel"
       # FIXME: uncomment the next line if you want to run docker without sudo
-      # "docker"
+      "docker"
     ];
     # FIXME: add your own hashed password
     # hashedPassword = "";

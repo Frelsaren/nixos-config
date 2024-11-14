@@ -191,7 +191,6 @@ in {
             sha256 = "sha256-f/CUR0vhMJ1sZgztmVTPvmsAgp0kjFov843Mabdzvqo=";
           }
           + "/extras/kanagawa.fish")}
-
         set -U fish_greeting
       '';
       functions = {
@@ -240,6 +239,7 @@ in {
         pbpaste = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
         explorer = "/mnt/c/Windows/explorer.exe";
         code = "/mnt/c/Appl/vscode/bin/code";
+        # cd = "__zoxide_z";
       };
       plugins = [
         {
