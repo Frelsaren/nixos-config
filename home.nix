@@ -25,7 +25,6 @@
     procs
     ripgrep
     sd
-    tmux
     tree
     unzip
     # vim
@@ -42,12 +41,13 @@
     gh # for bootstrapping
     just
 
+    tmux
     # core languages
     rustup
     nodejs
     python3
     typescript
-
+    go
     nodePackages.typescript-language-server
     pkgs.nodePackages.vscode-langservers-extracted # html, css, json, eslint
     gopls
@@ -105,6 +105,7 @@ in {
         };
         colorschemes.kanagawa.enable = false;
         colorschemes.catppuccin.enable = true;
+        colorschemes.catppuccin.settings.flavour = "macchiato";
       })
       # pkgs.some-package
       # pkgs.unstable.some-other-package
@@ -130,6 +131,33 @@ in {
       ruby.disabled = true;
       hostname.ssh_only = false;
       hostname.style = "bold green";
+    };
+
+    tmux = {
+      enable = true;
+      shell = "${pkgs.fish}/bin/fish";
+      terminal = "tmux-256color";
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = catppuccin;
+          extraConfig = ''
+            set -g @catppuccin_flavour 'macchiato'
+            set -g @catppuccin_windoww_tabs_enabled on
+            set -g @catppuccin_date_time "%H:%M"
+          '';
+        }
+        cpu
+        better-mouse-mode
+      ];
+      extraConfig = ''
+        bind s split-window -v -c "#{pane_current_path}"
+        bind v split-window -h -c "#{pane_current_path}"
+
+        bind -n C-h select-pane -L
+        bind -n C-j select-pane -D
+        bind -n C-k select-pane -U
+        bind -n C-l select-pane -R
+      '';
     };
 
     # FIXME: disable whatever you don't want
