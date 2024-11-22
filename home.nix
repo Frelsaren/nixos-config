@@ -182,6 +182,11 @@ in {
         side-by-side = true;
         navigate = true;
       };
+      aliases = {
+        ignore = "update-index --skip-worktree";
+        uningore = "update-index --no-skip-worktree";
+        ignored = ''!git ls-files -v | grep "^$"'';
+      };
       userEmail = "markus.roiland00@gmail.com"; # FIXME: set your git email
       userName = "Frelsaren"; #FIXME: set your git username
       extraConfig = {
