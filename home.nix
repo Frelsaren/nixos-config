@@ -58,7 +58,7 @@
     # local dev stuf
     mkcert
     httpie
-
+    devenv
     # treesitter
     tree-sitter
 
@@ -216,7 +216,6 @@ in {
       # FIXME: run 'scoop install win32yank' on Windows, then add this line with your Windows username to the bottom of interactiveShellInit
       # fish_add_path --append /mnt/c/Users/<Your Windows Username>/scoop/apps/win32yank/0.1.1
       interactiveShellInit = ''
-        fish_add_path --append /mnt/c/Users/mroil/scoop/apps/win32yank/0.1.1
         ${pkgs.lib.strings.fileContents (pkgs.fetchFromGitHub {
             owner = "rebelot";
             repo = "kanagawa.nvim";
@@ -225,10 +224,12 @@ in {
           }
           + "/extras/kanagawa.fish")}
         set -U fish_greeting
+        fish_add_path --append /mnt/c/Users/mroil/scoop/apps/win32yank/0.1.1
       '';
       functions = {
         refresh = "source $HOME/.config/fish/config.fish";
-        take = ''mkdir -p -- "$1" && cd -- "$1"'';
+        take = ''mkdir -p -- "$argv" && cd "./$argv"'';
+
         ttake = "cd $(mktemp -d)";
         show_path = "echo $PATH | tr ' ' '\n'";
         posix-source = ''
