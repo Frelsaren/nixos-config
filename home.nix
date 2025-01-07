@@ -1,5 +1,4 @@
 {
-  # FIXME: uncomment the next line if you want to reference your GitHub/GitLab access tokens and other secrets
   secrets,
   pkgs,
   username,
@@ -7,7 +6,6 @@
   ...
 }: let
   unstable-packages = with pkgs.unstable; [
-    # FIXME: select your core binaries that you always want on the bleeding-edge
     bat
     bottom
     coreutils
@@ -33,23 +31,20 @@
   ];
 
   stable-packages = with pkgs; [
-    # FIXME: customize these stable packages to your liking for the languages that you use
-
-    # FIXME: you can add plugins, change keymaps etc using (jeezyvim.nixvimExtend {})
-    # https://github.com/LGUG2Z/JeezyVim#extending
-    # key tools
     gh # for bootstrapping
     just
-
+    qmk
     tmux
     # core languages
     rustup
     nodejs
     python3
     typescript
+
     go
     nodePackages.typescript-language-server
-    pkgs.nodePackages.vscode-langservers-extracted # html, css, json, eslint
+    nodePackages.vscode-langservers-extracted # html, css, json, eslint
+    nodePackages.ts-node
     gopls
     # rust stuff
     cargo-cache
@@ -103,9 +98,10 @@ in {
             ts_ls.enable = true;
           };
         };
+
         colorschemes.kanagawa.enable = false;
         colorschemes.catppuccin.enable = true;
-        colorschemes.catppuccin.settings.flavour = "macchiato";
+        colorschemes.catppuccin.settings.flavour = "mocha";
       })
       # pkgs.some-package
       # pkgs.unstable.some-other-package
@@ -136,12 +132,12 @@ in {
     tmux = {
       enable = true;
       shell = "${pkgs.fish}/bin/fish";
-      terminal = "tmux-256color";
+      terminal = "screen-256color";
       plugins = with pkgs.tmuxPlugins; [
         {
           plugin = catppuccin;
           extraConfig = ''
-            set -g @catppuccin_flavour 'macchiato'
+            set -g @catppuccin_flavour 'mocha'
             set -g @catppuccin_windoww_tabs_enabled on
             set -g @catppuccin_date_time "%H:%M"
           '';
@@ -150,6 +146,8 @@ in {
         better-mouse-mode
       ];
       extraConfig = ''
+        set-option -a terminal-features "xterm-256color:RGB"
+        set-option -a terminal-overrides "xterm-256color:Tc"
         bind s split-window -v -c "#{pane_current_path}"
         bind v split-window -h -c "#{pane_current_path}"
 
@@ -224,7 +222,7 @@ in {
           }
           + "/extras/kanagawa.fish")}
         set -U fish_greeting
-        fish_add_path --append /mnt/c/Users/mroil/scoop/apps/win32yank/0.1.1
+        fish_add_path --append /mnt/c/Users/markus/scoop/apps/win32yank/0.1.1
       '';
       functions = {
         refresh = "source $HOME/.config/fish/config.fish";
