@@ -46,9 +46,6 @@
     nodePackages.vscode-langservers-extracted # html, css, json, eslint
     nodePackages.ts-node
     gopls
-    # rust stuff
-    cargo-cache
-    cargo-expand
 
     # local dev stuf
     mkcert
